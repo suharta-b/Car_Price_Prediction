@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+          *{
+              margin:0;
+              padding:0;
+              font-family: 'Josefin Sans', sans-serif;
+          }
+        html,
+        body,
+        header,
+        #intro {
+            height: 100%;
+        }
+
+        #intro {
+            background: url("{{ url_for('static',filename='background.jpg') }}")no-repeat center center;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
+
+      </style >
+
+    <title>Car Price Prediction</title>
+  </head>
+  <body>
+      <header>
+          <!--Mask-->
+        <div id="intro" class="container-fluid view ">
+            <h1 class="text-center text-capitalize pt-5">Know your Car's Selling Price</h1>
+            <hr class="w-75 mx-auto pt-5">
+            <div class="row mb-5">
+                <div class="col-lg-6 col-md-6 col-12 my-auto">
+                    <h3>{{ prediction_text }}</h3>
+                </div>
+                <div class="col-lg-6 col-md-6 col-12">
+                    <form action="{{ url_for('predict')}}" method="post">
+                        <div class="form-group">
+                        <!-- TODO : Year to accept only year date picker -->
+                        <label for="year">Purchase Year</label>
+                        <input class="form-control" type="number" id="year" name="Year" required="required" >
+                        </div>
+                        <div class="form-group">
+                        <label for="presentPrice">What was the Purchase Price?(In lakhs)</label>
+                        <input class="form-control" type="number" step="any" id="presentPrice" name="Present_Price" required="required">
+                        </div>
+                        <div class="form-group">
+                        <label for="kmsDriven">How many Kilometers driven till date?</label>
+                        <input class="form-control" type="number" id="kmsDriven" name="Kms_Driven" required="required">
+                        </div>
+                        <div class="form-group">
+                        <label for="owner">Number of owners the car has previously had (0 or 1 or 3)</label>
+                        <input class="form-control" type="number" id="owner" name="Owner" required="required">
+                        </div>
+                        <div class="form-group">
+                        <label for="fuelType">What is the Fuel Type ?</label>
+                        <select class="form-control" id="fuelType" name = "Fuel_Type" required="required" >
+                          <option value="Petrol">Petrol</option>
+                          <option value="Diesel">Diesel</option>
+                            <option value="CNG">CNG</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label for="sellerType">Are you a Dealer or Individual ?</label>
+                        <select class="form-control" id="sellerType" name = "Seller_Type" required="required" >
+                          <option value="Dealer">Dealer</option>
+                          <option value="Individual">Individual</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label for="transmissionType">Transmission Type </label>
+                        <select class="form-control" id="transmissionType" name = "Transmission_Type" required="required" >
+                          <option value="Automatic">Automatic</option>
+                          <option value="Manual">Manual</option>
+                        </select>
+                      </div>
+                      <button type="submit" class="btn btn-danger">Calculate your Car's Selling Price</button>
+
+                    </form>
+
+                     <br><br><h3>{{ prediction_text }}</h3>
+                </div>
+
+        </div>
+
+        </div>
+        <!--/.Mask-->
+      </header>
+
+
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
